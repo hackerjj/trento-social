@@ -1,0 +1,28 @@
+# Changelog — Trento Social
+
+Historial de cambios del registro vecinal de Trento Residencial.
+Lo más reciente arriba. Formato de fecha: DD mmm AAAA · HH:MM (hora local CDMX).
+
+## v1.1 — 15 oct 2026 · 21:40
+
+### Agregado
+- Aviso de Privacidad como modal con scroll propio (abre dentro de la página, no en otra pestaña), con buen diseño y barra de scroll personalizada.
+- Sección "Una sola persona a cargo": aclara que una única persona responsable administra los datos y que no se divulgan ni comparten con terceros comerciales.
+- Sección "Seguridad de tu información": explica el cifrado SSL/HTTPS en tránsito, almacenamiento con acceso restringido, acceso mínimo por contraseña y ausencia de terceros comerciales.
+- Formulario de contacto dentro del aviso (Web3Forms) que envía los mensajes a `jairalonsogarcias@gmail.com` sin exponer el correo del responsable en el sitio.
+- Pantalla de éxito tras el registro, con botón directo al grupo de WhatsApp (`https://chat.whatsapp.com/BTkXLSDkTIg21kgDzuMOcm`).
+- Chip de versión + modal de historial de cambios (igual que las demás herramientas del workspace).
+
+### Cambiado
+- Citas legales de la LFPDPPP 2025 verificadas con fuentes públicas: artículo 15 (contenido del aviso), plazos ARCO de 20 + 15 días, autoridad = Secretaría Anticorrupción y Buen Gobierno (ya no INAI). Se quitó la nota de "pendiente de verificar" y se reemplazó por un disclaimer de orientación general.
+
+## v1.0 — 15 oct 2026 · 17:45
+
+### Agregado
+- Formulario de registro vecinal mobile-first con validación de teléfono MX, consentimiento obligatorio y tracking invisible (tiempo en página, referrer, user-agent, idioma, pantalla).
+- Logo circular "Trento Social" (personas tomadas de la mano alrededor del logo de Trento Residencial).
+- Backend Laravel 11 calcado del stack de Sushi Queen (Mongo + Redis aislados con prefijo `trento:` y colecciones `trento_*`, sin crear base ni instancia nueva).
+- Acortador de enlaces propio tipo bit.ly con métricas completas (IP, país, ciudad, dispositivo, navegador, OS, referrer, timestamp) y panel de analíticas.
+- Aviso de privacidad conforme a la nueva LFPDPPP 2025.
+- Panel de administración con registros, tracking, export CSV y analíticas del acortador.
+- Publicación del frontend en GitHub Pages con SSL gratuito (https://hackerjj.github.io/trento-social/).

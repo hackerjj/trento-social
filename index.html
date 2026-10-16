@@ -61,6 +61,125 @@
   .msg.ok{display:block;background:var(--verde-ok-bg);border:1px solid var(--verde-ok);color:var(--verde-ok)}
   .msg.error{display:block;background:var(--rojo-bg);border:1px solid var(--rojo);color:var(--rojo)}
   footer{text-align:center;font-size:.82rem;color:var(--gris);margin-top:26px}
+
+  /* ===== Modal Aviso de Privacidad ===== */
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(28,20,14,.55);backdrop-filter:blur(2px);
+    display:none;align-items:center;justify-content:center;z-index:1000;padding:16px;
+  }
+  .modal-overlay.abierto{display:flex;animation:fadeIn .18s ease}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  .modal{
+    background:#fff;border-radius:18px;max-width:620px;width:100%;max-height:88vh;
+    display:flex;flex-direction:column;overflow:hidden;
+    box-shadow:0 20px 60px rgba(28,20,14,.35);animation:slideUp .22s ease;
+  }
+  @keyframes slideUp{from{transform:translateY(18px);opacity:.6}to{transform:translateY(0);opacity:1}}
+  .modal-head{
+    background:linear-gradient(135deg,var(--verde-claro),var(--verde-oscuro));
+    color:#fff;padding:18px 20px;display:flex;align-items:center;gap:10px;flex-shrink:0;
+  }
+  .modal-head svg{width:26px;height:26px;flex-shrink:0}
+  .modal-head h2{font-size:1.15rem;font-weight:700;line-height:1.3}
+  .modal-head .cerrar{
+    margin-left:auto;background:rgba(255,255,255,.2);border:none;color:#fff;cursor:pointer;
+    width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:1.3rem;line-height:1;transition:background .15s;flex-shrink:0;
+  }
+  .modal-head .cerrar:hover{background:rgba(255,255,255,.35)}
+  .modal-body{
+    overflow-y:auto;padding:20px 22px;scroll-behavior:smooth;
+  }
+  .modal-body::-webkit-scrollbar{width:10px}
+  .modal-body::-webkit-scrollbar-thumb{background:var(--verde-claro);border-radius:8px;border:2px solid #fff}
+  .modal-body::-webkit-scrollbar-track{background:var(--tenue)}
+  .modal-body h3{
+    font-size:1rem;color:var(--verde-oscuro);display:flex;align-items:center;gap:7px;
+    margin:18px 0 7px;padding-bottom:5px;border-bottom:2px solid var(--tenue);
+  }
+  .modal-body h3:first-child{margin-top:0}
+  .modal-body h3 .ico{color:var(--verde-oscuro)}
+  .modal-body p{margin:7px 0;font-size:.92rem;color:var(--cafe)}
+  .modal-body ul{margin:7px 0 7px 4px;padding-left:18px}
+  .modal-body li{margin:5px 0;font-size:.9rem}
+  .modal-body strong{color:var(--cafe)}
+  .m-destacado{
+    background:var(--verde-ok-bg);border-left:4px solid var(--verde-ok);border-radius:10px;
+    padding:12px 14px;margin:12px 0;font-size:.9rem;color:#235c27;
+  }
+  .m-seguridad{
+    background:#eef4fb;border-left:4px solid #2d6cb3;border-radius:10px;
+    padding:12px 14px;margin:12px 0;font-size:.9rem;color:#1d4a7a;
+  }
+  .m-legal{
+    background:var(--tenue);border:1px dashed var(--borde);border-radius:10px;
+    padding:11px 14px;margin:12px 0;font-size:.82rem;color:var(--gris);
+  }
+  .modal-foot{
+    flex-shrink:0;border-top:1px solid var(--borde);padding:14px 20px;
+    display:flex;gap:10px;justify-content:flex-end;background:#fff;
+  }
+  .modal-foot button{width:auto;padding:11px 20px;font-size:.95rem}
+  .modal-foot .btn-sec{background:#fff;color:var(--verde-oscuro);border:1.5px solid var(--verde)}
+  .modal-foot .btn-sec:hover{background:var(--tenue)}
+  .pend{background:#fff4e6;border:1px dashed var(--ambar-oscuro);border-radius:6px;
+    padding:1px 7px;font-size:.78rem;color:#8a5a00}
+
+  /* ===== Pantalla de exito ===== */
+  .exito{
+    background:#fff;border:1px solid var(--borde);border-radius:16px;padding:32px 22px;
+    box-shadow:0 6px 20px rgba(62,42,32,.06);text-align:center;animation:fadeIn .25s ease;
+  }
+  .exito-check{
+    width:76px;height:76px;border-radius:50%;background:var(--verde-ok-bg);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 16px;
+  }
+  .exito-check svg{width:40px;height:40px;color:var(--verde-ok)}
+  .exito h2{font-size:1.35rem;color:var(--verde-oscuro);margin-bottom:8px}
+  .exito p{color:var(--gris);font-size:.95rem;margin-bottom:18px}
+  .btn-wa{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    background:#25D366;color:#fff;font-weight:700;font-size:1.05rem;text-decoration:none;
+    padding:14px 24px;border-radius:12px;box-shadow:0 4px 14px rgba(37,211,102,.35);
+    transition:background .15s;
+  }
+  .btn-wa:hover{background:#1da851}
+  .btn-wa .ico{width:1.3em;height:1.3em}
+  .exito-nota{font-size:.78rem;color:var(--gris);margin-top:16px;word-break:break-all}
+  .exito-nota span{color:var(--verde-oscuro);font-weight:600}
+
+  /* ===== Formulario de contacto dentro del aviso ===== */
+  .form-contacto{display:flex;flex-direction:column;gap:9px;margin:10px 0 4px}
+  .form-contacto input,.form-contacto textarea{
+    width:100%;padding:10px 12px;font-size:.92rem;font-family:inherit;color:var(--cafe);
+    border:1.5px solid var(--borde);border-radius:9px;background:#fff;resize:vertical;
+  }
+  .form-contacto input:focus,.form-contacto textarea:focus{
+    outline:none;border-color:var(--verde);box-shadow:0 0 0 3px rgba(76,175,80,.18)
+  }
+  .btn-contacto{
+    width:auto;align-self:flex-start;background:var(--verde);color:#fff;border:none;
+    padding:10px 18px;border-radius:10px;font-weight:700;font-size:.92rem;cursor:pointer;
+    display:inline-flex;align-items:center;gap:7px;font-family:inherit;
+  }
+  .btn-contacto:hover{background:var(--verde-oscuro)}
+
+  /* ===== Chip de version + changelog ===== */
+  .ver-chip{
+    position:fixed;bottom:12px;right:12px;z-index:900;background:var(--verde-oscuro);color:#fff;
+    border:none;border-radius:20px;padding:6px 13px;font-size:.78rem;font-weight:700;cursor:pointer;
+    box-shadow:0 3px 10px rgba(0,0,0,.2);font-family:inherit;
+  }
+  .ver-chip:hover{background:var(--verde)}
+  #changelog{display:none}
+  #changelog.abierto{display:flex}
+  .cl-ver{margin-bottom:14px}
+  .cl-ver h4{font-size:.92rem;color:var(--verde-oscuro);margin-bottom:4px}
+  .cl-ver ul{margin:0 0 0 2px;padding-left:16px}
+  .cl-ver li{font-size:.86rem;margin:3px 0}
+  .cl-add{color:var(--verde-ok);font-weight:700}
+  .cl-chg{color:#1d4a7a;font-weight:700}
+  .cl-fix{color:var(--rojo);font-weight:700}
 </style>
 </head>
 <body>
@@ -123,10 +242,10 @@
         Aviso de Privacidad
       </h3>
       <p>
-        <strong>Administración Trento Social</strong> recaba tu nombre, domicilio, teléfono y correo
+        <strong>Trento Social</strong> recaba tu nombre, domicilio, teléfono y correo
         para darte de alta en el grupo de WhatsApp vecinal y enviarte comunicados. Al unirte, tu número
         y nombre se comparten con Meta y WhatsApp. Consulta el
-        <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad completo</a>.
+        <a href="#" id="abrir-aviso" role="button">Aviso de Privacidad completo</a>.
       </p>
       <div class="opciones">
         <label>
@@ -148,8 +267,195 @@
     <div class="msg" id="mensaje" role="status" aria-live="polite"></div>
   </form>
 
+  <!-- Pantalla de exito: se muestra solo tras registrarse correctamente -->
+  <div id="pantalla-exito" class="exito" style="display:none">
+    <div class="exito-check">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+    <h2>¡Registro completado!</h2>
+    <p>Gracias por registrarte. Ya puedes unirte al grupo de WhatsApp de Trento Residencial.</p>
+    <a class="btn-wa" id="link-grupo" href="#" target="_blank" rel="noopener">
+      <svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.9.9-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5 0a6.5 6.5 0 0 1-1.9-1.2 7.2 7.2 0 0 1-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.3-.4c0-.2 0-.3 0-.4l-.8-1.9c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1c0 1.2.9 2.4 1 2.6.1.2 1.7 2.6 4.1 3.6 1.5.6 2 .7 2.7.6.4-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1 0-.1-.2-.2-.4-.3z"/></svg>
+      Entrar al grupo de WhatsApp
+    </a>
+    <p class="exito-nota">Si el botón no abre, copia este enlace en tu navegador:<br><span id="link-texto"></span></p>
+  </div>
+
   <footer>Trento Social — Comunidad del fraccionamiento Trento Residencial.</footer>
 </main>
+
+<!-- ===== Modal Aviso de Privacidad (scroll propio) ===== -->
+<div class="modal-overlay" id="modal-aviso" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+  <div class="modal">
+    <div class="modal-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <h2 id="modal-titulo">Aviso de Privacidad</h2>
+      <button class="cerrar" id="cerrar-aviso" aria-label="Cerrar aviso" title="Cerrar">&times;</button>
+    </div>
+
+    <div class="modal-body" id="aviso-scroll">
+      <p>
+        En <strong>Trento Social</strong> protegemos tus datos personales. Este aviso explica qué
+        información recabamos, para qué la usamos, quién la resguarda y cómo la mantenemos segura, en
+        cumplimiento de la Ley Federal de Protección de Datos Personales en Posesión de los Particulares
+        (LFPDPPP) vigente.
+      </p>
+
+      <h3>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        1. Responsable de tus datos
+      </h3>
+      <p>
+        El responsable del tratamiento de tus datos personales es la persona encargada de administrar el
+        grupo vecinal de Trento Residencial. Para proteger la privacidad de todos, el contacto se hace a
+        través del formulario que aparece al final de este aviso; tu mensaje llega directamente al
+        responsable, sin exponer datos personales de nadie.
+      </p>
+      <div class="m-destacado">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <strong>Una sola persona a cargo.</strong> Tus datos los administra directamente una única
+        persona responsable del grupo vecinal. No se venden, no se rentan ni se comparten con terceros
+        con fines comerciales, publicitarios ni de ningún otro tipo. Solo se usan para lo que aquí se
+        explica.
+      </div>
+
+      <h3>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+        2. Datos que recabamos
+      </h3>
+      <ul>
+        <li>Nombre completo.</li>
+        <li>Domicilio dentro del fraccionamiento (casa o calle).</li>
+        <li>Teléfono o WhatsApp.</li>
+        <li>Correo electrónico (opcional).</li>
+        <li>Calidad de propietario o inquilino.</li>
+        <li>Datos técnicos de seguridad: IP, navegador, página de procedencia e idioma, usados solo para
+          prevenir registros falsos o abuso del formulario.</li>
+      </ul>
+
+      <h3>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        3. Para qué usamos tus datos
+      </h3>
+      <p>Finalidades necesarias para darte de alta:</p>
+      <ul>
+        <li>Agregarte y gestionar tu participación en el grupo de WhatsApp vecinal.</li>
+        <li>Enviarte avisos y comunicados del fraccionamiento.</li>
+      </ul>
+
+      <h3>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        4. Seguridad de tu información
+      </h3>
+      <div class="m-seguridad">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <strong>Cómo cuidamos tus datos:</strong>
+        <ul style="margin-top:8px">
+          <li><strong>Cifrado en tránsito (SSL/HTTPS):</strong> este sitio usa un certificado SSL válido,
+            así que todo lo que escribes viaja cifrado entre tu dispositivo y nuestro servidor. Nadie en
+            la red puede leer tus datos en el camino.</li>
+          <li><strong>Almacenamiento controlado:</strong> tus datos se guardan en una base de datos con
+            acceso restringido, protegida con credenciales que solo conoce la persona responsable.</li>
+          <li><strong>Acceso mínimo:</strong> únicamente la persona responsable del grupo puede ver los
+            registros, mediante un panel protegido por contraseña.</li>
+          <li><strong>Sin terceros comerciales:</strong> no entregamos tu información a anunciantes ni a
+            plataformas de marketing.</li>
+        </ul>
+      </div>
+
+      <h3>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8M16 6l-4-4-4 4M12 2v14"/></svg>
+        5. Transferencia a WhatsApp
+      </h3>
+      <p>
+        Al integrarte al grupo, tu número y nombre quedan visibles para WhatsApp (Meta) y para los demás
+        integrantes del grupo, como ocurre en cualquier grupo de WhatsApp. Ese tratamiento se rige
+        además por las políticas de privacidad de Meta.
+      </p>
+
+      <h3>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg>
+        6. Tus derechos (ARCO)
+      </h3>
+      <p>
+        Puedes solicitar en cualquier momento el Acceso, Rectificación, Cancelación u Oposición (derechos
+        ARCO) sobre tus datos, así como darte de baja del grupo. Para ejercerlos, usa el formulario de
+        contacto que está al final de este aviso. Conforme a la LFPDPPP vigente, el responsable cuenta con
+        20 días para responder y 15 días para hacer efectiva la solicitud procedente.
+      </p>
+
+      <h3>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        7. Contacto
+      </h3>
+      <p>
+        Para dudas sobre tus datos, ejercer tus derechos ARCO o darte de baja, escríbenos por este medio.
+        Tu mensaje llega directo al responsable del grupo.
+      </p>
+      <form class="form-contacto" action="https://api.web3forms.com/submit" method="POST">
+        <!-- Web3Forms: pega aqui tu Access Key gratis (se genera en web3forms.com con jairalonsogarcias@gmail.com). -->
+        <input type="hidden" name="access_key" value="TU_ACCESS_KEY">
+        <input type="hidden" name="subject" value="Trento Social - Contacto / Derechos ARCO">
+        <input type="hidden" name="from_name" value="Formulario Trento Social">
+        <input type="text" name="nombre" placeholder="Tu nombre" required>
+        <input type="email" name="email" placeholder="Tu correo para responderte" required>
+        <textarea name="mensaje" rows="3" placeholder="Tu mensaje o solicitud" required></textarea>
+        <button type="submit" class="btn-contacto">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          Enviar mensaje
+        </button>
+      </form>
+
+      <div class="m-legal">
+        Fundamento: Ley Federal de Protección de Datos Personales en Posesión de los Particulares,
+        publicada en el DOF el 20 de marzo de 2025 y vigente desde el 21 de marzo de 2025 (artículo 15,
+        contenido del aviso). Autoridad: Secretaría Anticorrupción y Buen Gobierno. Este aviso es
+        orientación general, no asesoría legal formal. Última actualización: 15 de octubre de 2026.
+      </div>
+    </div>
+
+    <div class="modal-foot">
+      <button type="button" class="btn-sec" id="aviso-rechazar">No acepto</button>
+      <button type="button" id="aviso-aceptar">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        Acepto
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Chip de version + Changelog ===== -->
+<button class="ver-chip" id="ver-chip" title="Ver historial de cambios">v1.1</button>
+<div class="modal-overlay" id="changelog" role="dialog" aria-modal="true" aria-labelledby="cl-titulo">
+  <div class="modal">
+    <div class="modal-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/></svg>
+      <h2 id="cl-titulo">Historial de versiones</h2>
+      <button class="cerrar" id="cl-cerrar" aria-label="Cerrar" title="Cerrar">&times;</button>
+    </div>
+    <div class="modal-body" id="changelog-body">
+      <div class="cl-ver">
+        <h4>v1.1 — 15 oct 2026 · 21:40</h4>
+        <ul>
+          <li><span class="cl-add">NUEVO</span> Aviso de Privacidad como modal con scroll propio, sin salir de la página.</li>
+          <li><span class="cl-add">NUEVO</span> Secciones de responsable único (datos no se divulgan) y seguridad SSL/HTTPS.</li>
+          <li><span class="cl-add">NUEVO</span> Formulario de contacto (Web3Forms) que oculta el correo del responsable.</li>
+          <li><span class="cl-add">NUEVO</span> Pantalla de éxito con botón directo al grupo de WhatsApp.</li>
+          <li><span class="cl-chg">CAMBIO</span> Citas legales de la LFPDPPP 2025 verificadas (art. 15, plazos ARCO 20+15 días, Secretaría Anticorrupción).</li>
+        </ul>
+      </div>
+      <div class="cl-ver">
+        <h4>v1.0 — 15 oct 2026 · 17:45</h4>
+        <ul>
+          <li><span class="cl-add">NUEVO</span> Formulario de registro vecinal con validación y tracking (IP, hora, dispositivo).</li>
+          <li><span class="cl-add">NUEVO</span> Logo circular Trento Social.</li>
+          <li><span class="cl-add">NUEVO</span> Backend Laravel + acortador de enlaces (bit.ly propio) + panel de administración.</li>
+          <li><span class="cl-add">NUEVO</span> Publicado en GitHub Pages con SSL gratuito.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
   // =======================================================================
@@ -158,6 +464,8 @@
   const API_URL = "http://localhost:10000"; // CAMBIAR a la URL de Render en produccion
   // Version del aviso que esta pagina muestra (debe coincidir con aviso-privacidad.html)
   const AVISO_VERSION = "2026-10-15";
+  // Link del grupo de WhatsApp que se muestra tras registrarse con exito:
+  const WHATSAPP_GRUPO = "https://chat.whatsapp.com/BTkXLSDkTIg21kgDzuMOcm";
   // =======================================================================
 
   // Regex de telefono MX: 10 digitos nacionales, con +52 o 52 opcional.
@@ -170,9 +478,59 @@
   const mensaje = document.getElementById("mensaje");
   const btn = document.getElementById("btn-enviar");
 
+  // ===== Modal Aviso de Privacidad =====
+  const modal = document.getElementById("modal-aviso");
+  const avisoScroll = document.getElementById("aviso-scroll");
+  const abrirAviso = document.getElementById("abrir-aviso");
+
+  function abrirModal(e){
+    if(e) e.preventDefault();
+    modal.classList.add("abierto");
+    document.body.style.overflow = "hidden";       // evita scroll de fondo
+    if(avisoScroll) avisoScroll.scrollTop = 0;       // siempre empieza arriba
+  }
+  function cerrarModal(){
+    modal.classList.remove("abierto");
+    document.body.style.overflow = "";
+  }
+  function marcarConsentimiento(valor){
+    // valor: "acepto" o "no_acepto" -> marca el radio del formulario
+    const radio = form.querySelector('input[name="consent_opcion"][value="'+valor+'"]');
+    if(radio) radio.checked = true;
+    cerrarModal();
+  }
+
+  abrirAviso.addEventListener("click", abrirModal);
+  document.getElementById("cerrar-aviso").addEventListener("click", cerrarModal);
+
+  // Changelog (chip de version)
+  const changelog = document.getElementById("changelog");
+  document.getElementById("ver-chip").addEventListener("click", function(){
+    changelog.classList.add("abierto"); document.body.style.overflow="hidden";
+  });
+  document.getElementById("cl-cerrar").addEventListener("click", function(){
+    changelog.classList.remove("abierto"); document.body.style.overflow="";
+  });
+  changelog.addEventListener("click", function(e){ if(e.target===changelog){ changelog.classList.remove("abierto"); document.body.style.overflow=""; } });
+  document.getElementById("aviso-aceptar").addEventListener("click", function(){ marcarConsentimiento("acepto"); });
+  document.getElementById("aviso-rechazar").addEventListener("click", function(){ marcarConsentimiento("no_acepto"); });
+  // Cerrar al hacer clic fuera del cuadro o con Escape
+  modal.addEventListener("click", function(e){ if(e.target === modal) cerrarModal(); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape" && modal.classList.contains("abierto")) cerrarModal(); });
+
   function mostrarMensaje(texto, tipo){
     mensaje.textContent = texto;
     mensaje.className = "msg " + tipo;
+  }
+
+  // Pantalla de exito: oculta el formulario y muestra el acceso al grupo de WhatsApp.
+  function mostrarExito(){
+    form.style.display = "none";
+    const exito = document.getElementById("pantalla-exito");
+    document.getElementById("link-grupo").href = WHATSAPP_GRUPO;
+    document.getElementById("link-texto").textContent = WHATSAPP_GRUPO;
+    exito.style.display = "block";
+    exito.scrollIntoView({behavior:"smooth", block:"center"});
   }
 
   form.addEventListener("submit", async function(e){
@@ -233,8 +591,7 @@
       try { data = await resp.json(); } catch(_) { data = {}; }
 
       if(resp.ok && data.success){
-        form.reset();
-        mostrarMensaje("¡Registro recibido! Pronto te integraremos al grupo de WhatsApp vecinal.", "ok");
+        mostrarExito();
       } else if(resp.status === 422){
         let detalle = (data && data.message) ? data.message : "Revisa los datos e inténtalo de nuevo.";
         if(data && data.errors){
