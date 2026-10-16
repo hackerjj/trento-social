@@ -3,6 +3,11 @@
 Historial de cambios del registro vecinal de Trento Residencial.
 Lo más reciente arriba. Formato de fecha: DD mmm AAAA · HH:MM (hora local CDMX).
 
+## v1.2 — 15 oct 2026 · 22:05
+
+### Corregido
+- Formulario de contacto activado con el Access Key de Web3Forms (`ed4b98c1-...`). Los mensajes de los vecinos ya llegan a `jairalonsogarcias@gmail.com`.
+
 ## v1.1 — 15 oct 2026 · 21:40
 
 ### Agregado
