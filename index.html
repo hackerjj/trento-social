@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro vecinal — Trento Social</title>
+<style>
+  :root{
+    --verde:#4CAF50; --verde-claro:#8BC34A; --verde-oscuro:#388E3C; --verde-alt:#43A047;
+    --lima:#C0CA33; --ambar:#FFB300; --amarillo:#FFD600; --ambar-oscuro:#FFA000;
+    --cafe:#3E2A20; --fondo:#ffffff; --gris:#6b5d54; --borde:#d9d2cb; --tenue:#f4f6ef;
+    --rojo:#c0392b; --rojo-bg:#fdecea; --verde-ok:#2e7d32; --verde-ok-bg:#eaf6ea;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Trebuchet MS','Century Gothic',system-ui,sans-serif;
+    color:var(--cafe); background:var(--tenue); line-height:1.55;
+    -webkit-font-smoothing:antialiased; padding:0 0 50px;
+  }
+  .ico{display:inline-block;width:1em;height:1em;vertical-align:-0.125em;margin-right:4px}
+  header{
+    background:linear-gradient(135deg,var(--verde-claro),var(--verde-oscuro));
+    color:#fff;text-align:center;padding:26px 18px 22px;
+  }
+  header img{width:98px;height:98px;background:#fff;border-radius:50%;
+    padding:6px;box-shadow:0 4px 14px rgba(0,0,0,.18);display:block;margin:0 auto 10px}
+  header h1{font-size:1.4rem;font-weight:700;letter-spacing:.4px}
+  header p{font-size:.95rem;opacity:.95;margin-top:6px}
+  main{max-width:560px;margin:0 auto;padding:18px 16px}
+  form{background:#fff;border:1px solid var(--borde);border-radius:16px;
+    padding:20px 18px;box-shadow:0 6px 20px rgba(62,42,32,.06)}
+  .campo{margin-bottom:16px}
+  label{display:flex;align-items:center;gap:6px;font-weight:700;font-size:.92rem;margin-bottom:6px}
+  label .ico{color:var(--verde-oscuro)}
+  .req{color:var(--rojo);font-weight:700;margin-left:2px}
+  input,select{
+    width:100%;padding:12px 13px;font-size:1rem;font-family:inherit;color:var(--cafe);
+    border:1.5px solid var(--borde);border-radius:10px;background:#fff;
+  }
+  input:focus,select:focus{outline:none;border-color:var(--verde);box-shadow:0 0 0 3px rgba(76,175,80,.18)}
+  .ayuda{font-size:.8rem;color:var(--gris);margin-top:4px}
+  .consent{
+    background:var(--tenue);border:1px solid var(--borde);border-radius:12px;
+    padding:14px 15px;margin:4px 0 16px;font-size:.9rem;
+  }
+  .consent h3{font-size:.95rem;color:var(--verde-oscuro);display:flex;align-items:center;gap:6px;margin-bottom:7px}
+  .consent p{margin:7px 0}
+  .consent a{color:var(--verde-oscuro);font-weight:700}
+  .opciones{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+  .opciones label{font-weight:600;font-size:.92rem;background:#fff;border:1.5px solid var(--borde);
+    border-radius:10px;padding:10px 12px;cursor:pointer;gap:9px}
+  .opciones input[type=radio]{width:auto;margin:0}
+  button{
+    width:100%;padding:14px;font-size:1.05rem;font-weight:700;font-family:inherit;color:#fff;
+    background:var(--verde);border:none;border-radius:12px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:8px;transition:background .15s;
+  }
+  button:hover{background:var(--verde-oscuro)}
+  button:disabled{opacity:.6;cursor:not-allowed}
+  .msg{border-radius:10px;padding:12px 14px;margin-top:16px;font-size:.92rem;display:none}
+  .msg.ok{display:block;background:var(--verde-ok-bg);border:1px solid var(--verde-ok);color:var(--verde-ok)}
+  .msg.error{display:block;background:var(--rojo-bg);border:1px solid var(--rojo);color:var(--rojo)}
+  footer{text-align:center;font-size:.82rem;color:var(--gris);margin-top:26px}
+</style>
+</head>
+<body>
+<header>
+  <img src="logo-trento-social.svg" alt="Logo de Trento Social: personas tomadas de la mano alrededor del árbol y el sol de Trento">
+  <h1>Registro vecinal</h1>
+  <p>Únete al grupo de WhatsApp de Trento Residencial</p>
+</header>
+
+<main>
+  <form id="form-registro" novalidate>
+    <div class="campo">
+      <label for="nombre">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Nombre completo<span class="req">*</span>
+      </label>
+      <input type="text" id="nombre" name="nombre" required minlength="2" maxlength="120" autocomplete="name" placeholder="Tu nombre completo">
+    </div>
+
+    <div class="campo">
+      <label for="domicilio">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5M5 9v11h14V9"/></svg>
+        Domicilio (casa o calle)<span class="req">*</span>
+      </label>
+      <input type="text" id="domicilio" name="domicilio" required minlength="2" maxlength="160" placeholder="Casa o calle en Trento Residencial">
+    </div>
+
+    <div class="campo">
+      <label for="telefono">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>
+        WhatsApp / Teléfono<span class="req">*</span>
+      </label>
+      <input type="tel" id="telefono" name="telefono" required inputmode="tel" placeholder="10 dígitos (ej. 5512345678)">
+      <div class="ayuda">10 dígitos nacionales. Puedes incluir +52 o 52 al inicio.</div>
+    </div>
+
+    <div class="campo">
+      <label for="tipo_residente">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V8l6-4 6 4v13M10 21v-6h4v6"/></svg>
+        ¿Propietario o inquilino?<span class="req">*</span>
+      </label>
+      <select id="tipo_residente" name="tipo_residente" required>
+        <option value="">Selecciona una opción</option>
+        <option value="propietario">Propietario</option>
+        <option value="inquilino">Inquilino</option>
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="email">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        Correo electrónico (opcional)
+      </label>
+      <input type="email" id="email" name="email" maxlength="160" autocomplete="email" placeholder="tucorreo@ejemplo.com">
+    </div>
+
+    <div class="consent">
+      <h3>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Aviso de Privacidad
+      </h3>
+      <p>
+        <strong>Administración Trento Social</strong> recaba tu nombre, domicilio, teléfono y correo
+        para darte de alta en el grupo de WhatsApp vecinal y enviarte comunicados. Al unirte, tu número
+        y nombre se comparten con Meta y WhatsApp. Consulta el
+        <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad completo</a>.
+      </p>
+      <div class="opciones">
+        <label>
+          <input type="radio" name="consent_opcion" value="acepto">
+          He leído y acepto el Aviso de Privacidad.
+        </label>
+        <label>
+          <input type="radio" name="consent_opcion" value="no_acepto">
+          No acepto.
+        </label>
+      </div>
+    </div>
+
+    <button type="submit" id="btn-enviar">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      Registrarme
+    </button>
+
+    <div class="msg" id="mensaje" role="status" aria-live="polite"></div>
+  </form>
+
+  <footer>Trento Social — Comunidad del fraccionamiento Trento Residencial.</footer>
+</main>
+
+<script>
+  // =======================================================================
+  // CONFIGURACION DE LA API  --  CAMBIAR AQUI al pasar a produccion
+  // =======================================================================
+  const API_URL = "http://localhost:10000"; // CAMBIAR a la URL de Render en produccion
+  // Version del aviso que esta pagina muestra (debe coincidir con aviso-privacidad.html)
+  const AVISO_VERSION = "2026-10-15";
+  // =======================================================================
+
+  // Regex de telefono MX: 10 digitos nacionales, con +52 o 52 opcional.
+  const TELEFONO_REGEX = /^(?:\+?52)?\d{10}$/;
+
+  // Tracking invisible: marca de tiempo al cargar la pagina.
+  const t0 = performance.now();
+
+  const form = document.getElementById("form-registro");
+  const mensaje = document.getElementById("mensaje");
+  const btn = document.getElementById("btn-enviar");
+
+  function mostrarMensaje(texto, tipo){
+    mensaje.textContent = texto;
+    mensaje.className = "msg " + tipo;
+  }
+
+  form.addEventListener("submit", async function(e){
+    e.preventDefault();
+    mensaje.className = "msg"; // ocultar mensaje previo
+
+    const nombre = document.getElementById("nombre").value.trim();
+    const domicilio = document.getElementById("domicilio").value.trim();
+    const telefono = document.getElementById("telefono").value.trim();
+    const tipo_residente = document.getElementById("tipo_residente").value;
+    const email = document.getElementById("email").value.trim();
+    const consentOpcion = form.querySelector('input[name="consent_opcion"]:checked');
+
+    // Validaciones de cliente (el servidor valida de nuevo con las mismas reglas).
+    if(!nombre || !domicilio || !telefono || !tipo_residente){
+      mostrarMensaje("Completa todos los campos obligatorios.", "error");
+      return;
+    }
+    if(!TELEFONO_REGEX.test(telefono)){
+      mostrarMensaje("El teléfono debe tener 10 dígitos nacionales (puedes incluir +52).", "error");
+      return;
+    }
+    if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      mostrarMensaje("El correo electrónico no tiene un formato válido.", "error");
+      return;
+    }
+    // Puerta de consentimiento: si elige "No acepto" se bloquea el envío.
+    if(!consentOpcion || consentOpcion.value === "no_acepto"){
+      mostrarMensaje("La aceptación del Aviso de Privacidad es obligatoria para registrarte.", "error");
+      return;
+    }
+
+    // Cuerpo del POST con el contrato de FEAT-001.
+    const body = {
+      nombre: nombre,
+      domicilio: domicilio,
+      telefono: telefono,
+      tipo_residente: tipo_residente,
+      email: email || null,
+      consentimiento: true,                 // solo true si el usuario aceptó
+      aviso_version: AVISO_VERSION,
+      // Tracking invisible (el servidor pone IP y user-agent autoritativos):
+      tiempo_en_pagina_ms: Math.round(performance.now() - t0),
+      referrer: document.referrer || null,
+      screen: screen.width + "x" + screen.height,
+      idioma: navigator.language || null
+    };
+
+    btn.disabled = true;
+    try{
+      const resp = await fetch(API_URL + "/api/trento/registro", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(body)
+      });
+
+      let data = {};
+      try { data = await resp.json(); } catch(_) { data = {}; }
+
+      if(resp.ok && data.success){
+        form.reset();
+        mostrarMensaje("¡Registro recibido! Pronto te integraremos al grupo de WhatsApp vecinal.", "ok");
+      } else if(resp.status === 422){
+        let detalle = (data && data.message) ? data.message : "Revisa los datos e inténtalo de nuevo.";
+        if(data && data.errors){
+          const primera = Object.values(data.errors)[0];
+          if(Array.isArray(primera) && primera.length) detalle = primera[0];
+        }
+        mostrarMensaje("No se pudo registrar: " + detalle, "error");
+      } else if(resp.status === 429){
+        mostrarMensaje("Demasiadas solicitudes. Espera un momento e inténtalo de nuevo.", "error");
+      } else {
+        mostrarMensaje("Ocurrió un error al registrar. Inténtalo más tarde.", "error");
+      }
+    } catch(err){
+      mostrarMensaje("No se pudo conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.", "error");
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
