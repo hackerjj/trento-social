@@ -185,6 +185,29 @@
   .cl-add{color:var(--verde-ok);font-weight:700}
   .cl-chg{color:#1d4a7a;font-weight:700}
   .cl-fix{color:var(--rojo);font-weight:700}
+
+  /* ===== Overlay de carga (al enviar el registro) ===== */
+  .carga-overlay{
+    position:fixed;inset:0;background:rgba(255,255,255,.93);backdrop-filter:blur(2px);
+    display:none;align-items:center;justify-content:center;z-index:1200;padding:20px;
+  }
+  .carga-overlay.activo{display:flex;animation:fadeIn .15s ease}
+  .carga-caja{text-align:center;max-width:300px}
+  .carga-logo{width:84px;height:84px;margin:0 auto 18px;animation:latido 1.4s ease-in-out infinite}
+  @keyframes latido{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+  .carga-caja h3{color:var(--verde-oscuro);font-size:1.05rem;margin-bottom:6px}
+  .carga-caja p{color:var(--gris);font-size:.88rem;margin-bottom:16px}
+  .barra-progreso{
+    width:100%;height:9px;background:var(--tenue);border-radius:20px;overflow:hidden;
+    border:1px solid var(--borde);
+  }
+  .barra-progreso-rellena{
+    height:100%;width:0%;border-radius:20px;
+    background:linear-gradient(90deg,var(--verde-claro),var(--verde-oscuro));
+    transition:width .35s ease;
+  }
+  .carga-nota{font-size:.76rem;color:var(--gris);margin-top:10px;opacity:0;transition:opacity .3s}
+  .carga-nota.visible{opacity:1}
 </style>
 </head>
 <body>
@@ -452,6 +475,19 @@
 </div>
 
 <!-- ===== Chip de version + Changelog ===== -->
+<!-- ===== Overlay de carga al enviar el registro ===== -->
+<div class="carga-overlay" id="carga-overlay" role="status" aria-live="polite">
+  <div class="carga-caja">
+    <img class="carga-logo" src="logo-trento-social.svg" alt="">
+    <h3>Enviando tu registro...</h3>
+    <p>Un momento, estamos guardando tus datos.</p>
+    <div class="barra-progreso">
+      <div class="barra-progreso-rellena" id="barra-progreso"></div>
+    </div>
+    <p class="carga-nota" id="carga-nota">El servidor está despertando, esto puede tardar unos segundos más.</p>
+  </div>
+</div>
+
 <button class="ver-chip" id="ver-chip" title="Ver historial de cambios">v1.3</button>
 <div class="modal-overlay" id="changelog" role="dialog" aria-modal="true" aria-labelledby="cl-titulo">
   <div class="modal">
@@ -575,6 +611,42 @@
     exito.scrollIntoView({behavior:"smooth", block:"center"});
   }
 
+  // ===== Overlay de carga (mientras se envia el registro) =====
+  const cargaOverlay = document.getElementById("carga-overlay");
+  const barraProgreso = document.getElementById("barra-progreso");
+  const cargaNota = document.getElementById("carga-nota");
+  let cargaTimers = [];
+
+  function mostrarCarga(){
+    cargaOverlay.classList.add("activo");
+    document.body.style.overflow = "hidden";
+    barraProgreso.style.width = "0%";
+    cargaNota.classList.remove("visible");
+    // Avance simulado: rapido al inicio, se frena cerca del final para no "mentir"
+    // si el servidor tarda mas de lo esperado (el servidor Free de Render puede
+    // tardar varios segundos en "despertar" tras estar inactivo).
+    cargaTimers.push(setTimeout(function(){ barraProgreso.style.width = "35%"; }, 80));
+    cargaTimers.push(setTimeout(function(){ barraProgreso.style.width = "60%"; }, 900));
+    cargaTimers.push(setTimeout(function(){ barraProgreso.style.width = "78%"; }, 2200));
+    cargaTimers.push(setTimeout(function(){ barraProgreso.style.width = "88%"; }, 4000));
+    // Si tarda mas de 3s avisa que el servidor puede estar "despertando".
+    cargaTimers.push(setTimeout(function(){ cargaNota.classList.add("visible"); }, 3000));
+  }
+  function ocultarCarga(completar){
+    cargaTimers.forEach(clearTimeout);
+    cargaTimers = [];
+    if(completar){
+      barraProgreso.style.width = "100%";
+      setTimeout(function(){
+        cargaOverlay.classList.remove("activo");
+        document.body.style.overflow = "";
+      }, 250);
+    } else {
+      cargaOverlay.classList.remove("activo");
+      document.body.style.overflow = "";
+    }
+  }
+
   form.addEventListener("submit", async function(e){
     e.preventDefault();
     mensaje.className = "msg"; // ocultar mensaje previo
@@ -624,6 +696,7 @@
     };
 
     btn.disabled = true;
+    mostrarCarga();
     try{
       const resp = await fetch(API_URL + "/api/trento/registro", {
         method: "POST",
@@ -635,8 +708,10 @@
       try { data = await resp.json(); } catch(_) { data = {}; }
 
       if(resp.ok && data.success){
-        mostrarExito();
+        ocultarCarga(true);
+        setTimeout(mostrarExito, 280); // deja ver la barra llegar al 100% antes de cambiar de pantalla
       } else if(resp.status === 422){
+        ocultarCarga(false);
         let detalle = (data && data.message) ? data.message : "Revisa los datos e inténtalo de nuevo.";
         if(data && data.errors){
           const primera = Object.values(data.errors)[0];
@@ -644,11 +719,14 @@
         }
         mostrarMensaje("No se pudo registrar: " + detalle, "error");
       } else if(resp.status === 429){
+        ocultarCarga(false);
         mostrarMensaje("Demasiadas solicitudes. Espera un momento e inténtalo de nuevo.", "error");
       } else {
+        ocultarCarga(false);
         mostrarMensaje("Ocurrió un error al registrar. Inténtalo más tarde.", "error");
       }
     } catch(err){
+      ocultarCarga(false);
       mostrarMensaje("No se pudo conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.", "error");
     } finally {
       btn.disabled = false;
