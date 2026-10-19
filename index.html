@@ -39,6 +39,11 @@
   }
   input:focus,select:focus{outline:none;border-color:var(--verde);box-shadow:0 0 0 3px rgba(76,175,80,.18)}
   .ayuda{font-size:.8rem;color:var(--gris);margin-top:4px}
+  .ayuda-vivienda{
+    background:#fff9e6;border:1px solid #f0d98a;border-radius:9px;
+    padding:9px 11px;margin-top:7px;color:#7a5a10;line-height:1.5;
+  }
+  .ayuda-vivienda strong{color:#6b4d00}
   .consent{
     background:var(--tenue);border:1px solid var(--borde);border-radius:12px;
     padding:14px 15px;margin:4px 0 16px;font-size:.9rem;
@@ -226,6 +231,28 @@
         <option value="propietario">Propietario</option>
         <option value="inquilino">Inquilino</option>
       </select>
+    </div>
+
+    <div class="campo">
+      <label for="personas_vivienda">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        ¿Cuántas personas viven en tu domicilio?<span class="req">*</span>
+      </label>
+      <select id="personas_vivienda" name="personas_vivienda" required>
+        <option value="">Selecciona una opción</option>
+        <option value="1">1 persona</option>
+        <option value="2">2 personas</option>
+        <option value="3">3 personas</option>
+        <option value="4">4 personas</option>
+        <option value="5">5 personas</option>
+        <option value="6">6 o más personas</option>
+      </select>
+      <div class="ayuda ayuda-vivienda">
+        Este número controla cuántos registros puede tener un mismo domicilio, para evitar duplicados.
+        <strong>Cada persona debe registrarse por separado con su propio número de WhatsApp</strong>, y el
+        total de registros de tu domicilio debe coincidir con el número que indiques aquí. Ejemplo: si
+        viven 3 personas, deben completarse los 3 registros, uno por cada integrante.
+      </div>
     </div>
 
     <div class="campo">
@@ -425,7 +452,7 @@
 </div>
 
 <!-- ===== Chip de version + Changelog ===== -->
-<button class="ver-chip" id="ver-chip" title="Ver historial de cambios">v1.2</button>
+<button class="ver-chip" id="ver-chip" title="Ver historial de cambios">v1.3</button>
 <div class="modal-overlay" id="changelog" role="dialog" aria-modal="true" aria-labelledby="cl-titulo">
   <div class="modal">
     <div class="modal-head">
@@ -434,6 +461,15 @@
       <button class="cerrar" id="cl-cerrar" aria-label="Cerrar" title="Cerrar">&times;</button>
     </div>
     <div class="modal-body" id="changelog-body">
+      <div class="cl-ver">
+        <h4>v1.3 — 17 oct 2026 · 06:30</h4>
+        <ul>
+          <li><span class="cl-add">NUEVO</span> Campo "¿Cuántas personas viven en tu domicilio?" para controlar registros por vivienda y evitar duplicados de tráfico.</li>
+          <li><span class="cl-add">NUEVO</span> Explicación: cada persona se registra por separado con su propio WhatsApp; el total debe coincidir con el número indicado.</li>
+          <li><span class="cl-chg">CAMBIO</span> Backend guarda y exporta el campo personas_vivienda; el panel lo muestra en una columna nueva.</li>
+          <li><span class="cl-fix">FIX</span> Backend conectado a MongoDB (MONGO_URI y APP_KEY corregidos en Render). El registro ya guarda en base de datos.</li>
+        </ul>
+      </div>
       <div class="cl-ver">
         <h4>v1.2 — 15 oct 2026 · 22:05</h4>
         <ul>
@@ -547,11 +583,12 @@
     const domicilio = document.getElementById("domicilio").value.trim();
     const telefono = document.getElementById("telefono").value.trim();
     const tipo_residente = document.getElementById("tipo_residente").value;
+    const personas_vivienda = document.getElementById("personas_vivienda").value;
     const email = document.getElementById("email").value.trim();
     const consentOpcion = form.querySelector('input[name="consent_opcion"]:checked');
 
     // Validaciones de cliente (el servidor valida de nuevo con las mismas reglas).
-    if(!nombre || !domicilio || !telefono || !tipo_residente){
+    if(!nombre || !domicilio || !telefono || !tipo_residente || !personas_vivienda){
       mostrarMensaje("Completa todos los campos obligatorios.", "error");
       return;
     }
@@ -575,6 +612,7 @@
       domicilio: domicilio,
       telefono: telefono,
       tipo_residente: tipo_residente,
+      personas_vivienda: parseInt(personas_vivienda, 10),  // cuantas personas viven en el domicilio
       email: email || null,
       consentimiento: true,                 // solo true si el usuario aceptó
       aviso_version: AVISO_VERSION,

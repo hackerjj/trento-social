@@ -3,6 +3,19 @@
 Historial de cambios del registro vecinal de Trento Residencial.
 Lo más reciente arriba. Formato de fecha: DD mmm AAAA · HH:MM (hora local CDMX).
 
+## v1.3 — 17 oct 2026 · 06:30
+
+### Agregado
+- Campo obligatorio "¿Cuántas personas viven en tu domicilio?" en el formulario de registro, para controlar cuántos registros puede reportar un mismo domicilio y evitar duplicados de tráfico.
+- Explicación visible: cada persona debe registrarse por separado con su propio número de WhatsApp, y el total de registros del domicilio debe coincidir con el número indicado (si viven 3, deben completarse 3 registros).
+
+### Cambiado
+- Backend (`RegistroController` + modelo `TrentoRegistration`) valida, guarda y exporta el nuevo campo `personas_vivienda`.
+- Panel de administración muestra una columna "Personas" en la tabla de registros.
+
+### Corregido
+- Backend en Render conectado correctamente a MongoDB: se corrigieron las variables `MONGO_URI` (tenía pegado el valor de APP_KEY) y `APP_KEY`. El formulario de registro ya guarda en la base de datos (verificado con un registro de prueba exitoso).
+
 ## v1.2 — 15 oct 2026 · 22:05
 
 ### Corregido

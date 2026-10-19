@@ -118,7 +118,7 @@
       <table id="tabla-registros">
         <thead>
           <tr>
-            <th>Nombre</th><th>Domicilio</th><th>Teléfono</th><th>Tipo</th><th>Email</th>
+            <th>Nombre</th><th>Domicilio</th><th>Teléfono</th><th>Tipo</th><th>Personas</th><th>Email</th>
             <th>IP</th><th>Tiempo en página</th><th>Referrer</th><th>Fecha</th>
           </tr>
         </thead>
@@ -272,7 +272,8 @@
       const tr = document.createElement("tr");
       const tk = r.tracking || {};
       const celdas = [
-        r.nombre, r.domicilio, r.telefono, r.tipo_residente, r.email || "",
+        r.nombre, r.domicilio, r.telefono, r.tipo_residente,
+        (r.personas_vivienda != null ? r.personas_vivienda : ""), r.email || "",
         tk.ip || "", (tk.tiempo_en_pagina_ms != null ? tk.tiempo_en_pagina_ms + " ms" : ""),
         tk.referrer || "", r.created_at || ""
       ];
