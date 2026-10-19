@@ -492,7 +492,7 @@
   </div>
 </div>
 
-<button class="ver-chip" id="ver-chip" title="Ver historial de cambios">v1.5</button>
+<button class="ver-chip" id="ver-chip" title="Ver historial de cambios">v1.6</button>
 <div class="modal-overlay" id="changelog" role="dialog" aria-modal="true" aria-labelledby="cl-titulo">
   <div class="modal">
     <div class="modal-head">
@@ -501,6 +501,12 @@
       <button class="cerrar" id="cl-cerrar" aria-label="Cerrar" title="Cerrar">&times;</button>
     </div>
     <div class="modal-body" id="changelog-body">
+      <div class="cl-ver">
+        <h4>v1.6 — 18 oct 2026 · 22:10</h4>
+        <ul>
+          <li><span class="cl-fix">FIX</span> Panel de administración (panel.html) seguía apuntando a <code>http://localhost:10000</code> en vez de la URL real del backend en Render, por lo que nunca podía conectar desde producción. Corregido a <code>https://trento-social-backend.onrender.com</code>.</li>
+        </ul>
+      </div>
       <div class="cl-ver">
         <h4>v1.5 — 19 oct 2026 · 09:10</h4>
         <ul>

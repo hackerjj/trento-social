@@ -3,6 +3,11 @@
 Historial de cambios del registro vecinal de Trento Residencial.
 Lo más reciente arriba. Formato de fecha: DD mmm AAAA · HH:MM (hora local CDMX).
 
+## v1.6 — 18 oct 2026 · 22:10
+
+### Corregido
+- `panel.html` seguía apuntando a `http://localhost:10000` en producción en vez de `https://trento-social-backend.onrender.com`, por lo que el panel de administración nunca podía conectar al cargar registros, exportar CSV o ver analíticas del acortador desde `https://hackerjj.github.io/trento-social/panel.html`. Corregido `API_URL`.
+
 ## v1.5 — 19 oct 2026 · 09:10
 
 ### Agregado
