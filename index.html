@@ -176,19 +176,9 @@
   /* ===== Chip de version + changelog ===== */
   .ver-chip{
     position:fixed;bottom:12px;right:12px;z-index:900;background:var(--verde-oscuro);color:#fff;
-    border:none;border-radius:20px;padding:6px 13px;font-size:.78rem;font-weight:700;cursor:pointer;
+    border:none;border-radius:20px;padding:6px 13px;font-size:.78rem;font-weight:700;cursor:default;
     box-shadow:0 3px 10px rgba(0,0,0,.2);font-family:inherit;
   }
-  .ver-chip:hover{background:var(--verde)}
-  #changelog{display:none}
-  #changelog.abierto{display:flex}
-  .cl-ver{margin-bottom:14px}
-  .cl-ver h4{font-size:.92rem;color:var(--verde-oscuro);margin-bottom:4px}
-  .cl-ver ul{margin:0 0 0 2px;padding-left:16px}
-  .cl-ver li{font-size:.86rem;margin:3px 0}
-  .cl-add{color:var(--verde-ok);font-weight:700}
-  .cl-chg{color:#1d4a7a;font-weight:700}
-  .cl-fix{color:var(--rojo);font-weight:700}
 
   /* ===== Overlay de carga (al enviar el registro) ===== */
   .carga-overlay{
@@ -492,85 +482,7 @@
   </div>
 </div>
 
-<button class="ver-chip" id="ver-chip" title="Ver historial de cambios">v1.8</button>
-<div class="modal-overlay" id="changelog" role="dialog" aria-modal="true" aria-labelledby="cl-titulo">
-  <div class="modal">
-    <div class="modal-head">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/></svg>
-      <h2 id="cl-titulo">Historial de versiones</h2>
-      <button class="cerrar" id="cl-cerrar" aria-label="Cerrar" title="Cerrar">&times;</button>
-    </div>
-    <div class="modal-body" id="changelog-body">
-      <div class="cl-ver">
-        <h4>v1.8 — 18 oct 2026 · 23:05</h4>
-        <ul>
-          <li><span class="cl-chg">CAMBIO</span> Favicon ahora es un círculo real: se eliminaron las esquinas blancas cuadradas. Se regeneró desde el SVG limpio con las esquinas transparentes (favicon 16/32, apple-touch-icon y versión 512) y el favicon SVG de la pestaña apunta a <code>logo-trento-social-circular.svg</code> con recorte circular.</li>
-        </ul>
-      </div>
-      <div class="cl-ver">
-        <h4>v1.7 — 18 oct 2026 · 22:35</h4>
-        <ul>
-          <li><span class="cl-add">NUEVO</span> Panel de administración: sección "Crear enlace corto" (URL destino + etiqueta opcional) conectada al endpoint <code>POST /api/trento/links</code>, para generar enlaces del acortador propio sin usar Postman ni la terminal.</li>
-        </ul>
-      </div>
-      <div class="cl-ver">
-        <h4>v1.6 — 18 oct 2026 · 22:10</h4>
-        <ul>
-          <li><span class="cl-fix">FIX</span> Panel de administración (panel.html) seguía apuntando a <code>http://localhost:10000</code> en vez de la URL real del backend en Render, por lo que nunca podía conectar desde producción. Corregido a <code>https://trento-social-backend.onrender.com</code>.</li>
-        </ul>
-      </div>
-      <div class="cl-ver">
-        <h4>v1.5 — 19 oct 2026 · 09:10</h4>
-        <ul>
-          <li><span class="cl-add">NUEVO</span> Validación de número duplicado: si el WhatsApp ya está registrado, se muestra "Este número ya se encuentra registrado" y no se crea un segundo registro.</li>
-          <li><span class="cl-add">NUEVO</span> Panel de administración: endpoint y token (TRENTO_ADMIN_TOKEN) activados en producción.</li>
-          <li><span class="cl-add">NUEVO</span> Favicon con el logo circular de Trento Social.</li>
-        </ul>
-      </div>
-      <div class="cl-ver">
-        <h4>v1.4 — 18 oct 2026 · 22:25</h4>
-        <ul>
-          <li><span class="cl-add">NUEVO</span> Overlay de carga con barra de progreso mientras se envía el registro, para que no parezca que la página se quedó sin responder (el servidor Free de Render puede tardar varios segundos en despertar).</li>
-          <li><span class="cl-add">NUEVO</span> Aviso que aparece si la espera se alarga, explicando que el servidor puede estar "despertando".</li>
-        </ul>
-      </div>
-      <div class="cl-ver">
-        <h4>v1.3 — 17 oct 2026 · 06:30</h4>
-        <ul>
-          <li><span class="cl-add">NUEVO</span> Campo "¿Cuántas personas viven en tu domicilio?" para controlar registros por vivienda y evitar duplicados de tráfico.</li>
-          <li><span class="cl-add">NUEVO</span> Explicación: cada persona se registra por separado con su propio WhatsApp; el total debe coincidir con el número indicado.</li>
-          <li><span class="cl-chg">CAMBIO</span> Backend guarda y exporta el campo personas_vivienda; el panel lo muestra en una columna nueva.</li>
-          <li><span class="cl-fix">FIX</span> Backend conectado a MongoDB (MONGO_URI y APP_KEY corregidos en Render). El registro ya guarda en base de datos.</li>
-        </ul>
-      </div>
-      <div class="cl-ver">
-        <h4>v1.2 — 15 oct 2026 · 22:05</h4>
-        <ul>
-          <li><span class="cl-fix">FIX</span> Formulario de contacto activado con el Access Key de Web3Forms. Los mensajes ya llegan al responsable.</li>
-        </ul>
-      </div>
-      <div class="cl-ver">
-        <h4>v1.1 — 15 oct 2026 · 21:40</h4>
-        <ul>
-          <li><span class="cl-add">NUEVO</span> Aviso de Privacidad como modal con scroll propio, sin salir de la página.</li>
-          <li><span class="cl-add">NUEVO</span> Secciones de responsable único (datos no se divulgan) y seguridad SSL/HTTPS.</li>
-          <li><span class="cl-add">NUEVO</span> Formulario de contacto (Web3Forms) que oculta el correo del responsable.</li>
-          <li><span class="cl-add">NUEVO</span> Pantalla de éxito con botón directo al grupo de WhatsApp.</li>
-          <li><span class="cl-chg">CAMBIO</span> Citas legales de la LFPDPPP 2025 verificadas (art. 15, plazos ARCO 20+15 días, Secretaría Anticorrupción).</li>
-        </ul>
-      </div>
-      <div class="cl-ver">
-        <h4>v1.0 — 15 oct 2026 · 17:45</h4>
-        <ul>
-          <li><span class="cl-add">NUEVO</span> Formulario de registro vecinal con validación y tracking (IP, hora, dispositivo).</li>
-          <li><span class="cl-add">NUEVO</span> Logo circular Trento Social.</li>
-          <li><span class="cl-add">NUEVO</span> Backend Laravel + acortador de enlaces (bit.ly propio) + panel de administración.</li>
-          <li><span class="cl-add">NUEVO</span> Publicado en GitHub Pages con SSL gratuito.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+<button class="ver-chip" id="ver-chip" title="Trento Social">v1.7</button>
 
 <script>
   // =======================================================================
@@ -618,15 +530,8 @@
   abrirAviso.addEventListener("click", abrirModal);
   document.getElementById("cerrar-aviso").addEventListener("click", cerrarModal);
 
-  // Changelog (chip de version)
-  const changelog = document.getElementById("changelog");
-  document.getElementById("ver-chip").addEventListener("click", function(){
-    changelog.classList.add("abierto"); document.body.style.overflow="hidden";
-  });
-  document.getElementById("cl-cerrar").addEventListener("click", function(){
-    changelog.classList.remove("abierto"); document.body.style.overflow="";
-  });
-  changelog.addEventListener("click", function(e){ if(e.target===changelog){ changelog.classList.remove("abierto"); document.body.style.overflow=""; } });
+  // El chip de version en la pagina publica es solo decorativo; el historial de
+  // cambios vive en el panel de administracion (detras del token).
   document.getElementById("aviso-aceptar").addEventListener("click", function(){ marcarConsentimiento("acepto"); });
   document.getElementById("aviso-rechazar").addEventListener("click", function(){ marcarConsentimiento("no_acepto"); });
   // Cerrar al hacer clic fuera del cuadro o con Escape
