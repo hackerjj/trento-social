@@ -482,7 +482,7 @@
   </div>
 </div>
 
-<button class="ver-chip" id="ver-chip" title="Trento Social">v1.8</button>
+<button class="ver-chip" id="ver-chip" title="Trento Social">v1.9</button>
 
 <script>
   // =======================================================================
@@ -500,6 +500,16 @@
 
   // Tracking invisible: marca de tiempo al cargar la pagina.
   const t0 = performance.now();
+  // Codigo de enlace corto que trajo al usuario a esta pagina (?t=ABC1234), si aplica.
+  const ENLACE_CODE = new URLSearchParams(window.location.search).get("t") || null;
+
+  // Profundidad maxima de scroll alcanzada, en porcentaje (0-100).
+  let scrollMaxPct = 0;
+  window.addEventListener("scroll", function(){
+    const alturaScrolleable = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const pct = alturaScrolleable > 0 ? (window.scrollY / alturaScrolleable) * 100 : 0;
+    scrollMaxPct = Math.max(scrollMaxPct, Math.min(100, pct));
+  }, { passive: true });
 
   const form = document.getElementById("form-registro");
   const mensaje = document.getElementById("mensaje");
@@ -634,7 +644,12 @@
       tiempo_en_pagina_ms: Math.round(performance.now() - t0),
       referrer: document.referrer || null,
       screen: screen.width + "x" + screen.height,
-      idioma: navigator.language || null
+      idioma: navigator.language || null,
+      scroll_depth: Math.round(scrollMaxPct),
+      enlace_code: ENLACE_CODE,
+      zona_horaria: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+      ventana: window.innerWidth + "x" + window.innerHeight,
+      plataforma: (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || null
     };
 
     btn.disabled = true;

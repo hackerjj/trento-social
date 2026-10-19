@@ -113,7 +113,11 @@
   .cl-add{color:var(--verde-ok);font-weight:700}
   .cl-chg{color:#1d4a7a;font-weight:700}
   .cl-fix{color:var(--rojo);font-weight:700}
+  .grafico-caja{height:260px;background:var(--tenue);border:1px solid var(--borde);border-radius:12px;padding:12px}
+  .grafico-caja h3{font-size:.92rem;color:var(--cafe);margin-bottom:7px;display:flex;align-items:center;gap:6px}
+  .graficos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:14px}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <header>
@@ -226,6 +230,12 @@
           Ver analíticas
         </button>
       </div>
+      <div style="flex:0 0 auto">
+        <button id="btn-cargar-clicks" class="sec">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11a3 3 0 1 0 6 0 3 3 0 0 0-6 0z"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg>
+          Ver detalle de clics
+        </button>
+      </div>
     </div>
     <div class="msg" id="msg-stats" role="status" aria-live="polite"></div>
 
@@ -271,13 +281,80 @@
           <ul id="por-dia"></ul>
         </div>
       </div>
+
+      <div class="graficos">
+        <div class="grafico-caja">
+          <h3>
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+            Por país
+          </h3>
+          <canvas id="chart-pais"></canvas>
+        </div>
+        <div class="grafico-caja">
+          <h3>
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+            Por dispositivo
+          </h3>
+          <canvas id="chart-dispositivo"></canvas>
+        </div>
+        <div class="grafico-caja">
+          <h3>
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
+            Por navegador
+          </h3>
+          <canvas id="chart-navegador"></canvas>
+        </div>
+        <div class="grafico-caja">
+          <h3>
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Por sistema operativo
+          </h3>
+          <canvas id="chart-os"></canvas>
+        </div>
+        <div class="grafico-caja">
+          <h3>
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0 0 20 10 10 0 0 0 0-20zM2 12h20"/></svg>
+            Por ISP
+          </h3>
+          <canvas id="chart-isp"></canvas>
+        </div>
+        <div class="grafico-caja">
+          <h3>
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg>
+            Clics por día
+          </h3>
+          <canvas id="chart-dia"></canvas>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- ================= DETALLE DE CLICS ================= -->
+  <section class="tarjeta">
+    <h2>
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11a3 3 0 1 0 6 0 3 3 0 0 0-6 0z"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg>
+      Detalle de clics
+    </h2>
+    <div class="msg" id="msg-clicks" role="status" aria-live="polite"></div>
+    <div class="tabla-wrap">
+      <table id="tabla-clicks">
+        <thead>
+          <tr>
+            <th>Fecha/hora</th><th>IP</th><th>País</th><th>Región</th><th>Ciudad</th><th>Lat/Lon</th>
+            <th>ISP</th><th>Compañía</th><th>ASN</th><th>Dispositivo</th><th>SO</th><th>Navegador</th>
+            <th>Referrer</th><th>User-Agent</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="vacio" id="clicks-vacio">Carga primero las analíticas de un enlace y pulsa "Ver detalle de clics".</div>
   </section>
 
   <footer>Trento Social — Panel interno de administración.</footer>
 </main>
 
-<button class="ver-chip" id="ver-chip" title="Ver historial de cambios">v1.8</button>
+<button class="ver-chip" id="ver-chip" title="Ver historial de cambios">v1.9</button>
 <div class="modal-overlay" id="changelog" role="dialog" aria-modal="true" aria-labelledby="cl-titulo">
   <div class="modal">
     <div class="modal-head">
@@ -286,6 +363,16 @@
       <button class="cerrar" id="cl-cerrar" aria-label="Cerrar" title="Cerrar">&times;</button>
     </div>
     <div class="modal-body" id="changelog-body">
+      <div class="cl-ver">
+        <h4>v1.9 — 19 oct 2026 · 06:20</h4>
+        <ul>
+          <li><span class="cl-add">NUEVO</span> Geolocalización ampliada: la tabla de analíticas ya puede mostrar región, latitud/longitud, ISP, compañía y ASN de cada clic, además de país y ciudad.</li>
+          <li><span class="cl-add">NUEVO</span> Sección "Detalle de clics": tabla cruda con los últimos clics de un enlace, con fecha/hora, IP, ubicación geográfica completa, ISP, compañía, ASN, dispositivo, sistema operativo, navegador, referrer y user-agent.</li>
+          <li><span class="cl-add">NUEVO</span> 6 gráficas con Chart.js en Analíticas del acortador: barras por país, dispositivo, navegador, sistema operativo e ISP, y una línea de clics por día.</li>
+          <li><span class="cl-chg">CAMBIO</span> El acortador vuelve a usar una redirección 302 real con <code>?t=&lt;code&gt;</code> en vez del iframe de pantalla completa de la v1.8.</li>
+          <li><span class="cl-add">NUEVO</span> El formulario de registro ahora envía profundidad de scroll, código del enlace de origen, zona horaria, tamaño de ventana y plataforma del dispositivo, junto con el resto del tracking invisible.</li>
+        </ul>
+      </div>
       <div class="cl-ver">
         <h4>v1.8 — 18 oct 2026 · 23:05</h4>
         <ul>
@@ -587,6 +674,40 @@
     }
   }
 
+  // Guarda la instancia de Chart.js de cada canvas para poder destruirla antes de
+  // volver a dibujar (si no, Chart.js lanza "Canvas is already in use").
+  const chartInstances = {};
+
+  function pintarChart(id, tipo, obj, opciones){
+    const canvas = $(id);
+    if(chartInstances[id]){ chartInstances[id].destroy(); delete chartInstances[id]; }
+    const entradas = Object.entries(obj || {});
+    entradas.sort((a, b) => (tipo === "line" ? 0 : b[1] - a[1]));
+    const etiquetas = entradas.map(([clave]) => (clave === "" || clave == null) ? "(desconocido)" : clave);
+    const valores = entradas.map(([, valor]) => valor);
+    chartInstances[id] = new Chart(canvas, {
+      type: tipo,
+      data: {
+        labels: etiquetas,
+        datasets: [{
+          label: (opciones && opciones.label) || "Clics",
+          data: valores,
+          backgroundColor: tipo === "line" ? "rgba(76,175,80,.18)" : "rgba(76,175,80,.75)",
+          borderColor: "#388E3C",
+          borderWidth: tipo === "line" ? 2 : 1,
+          fill: tipo === "line",
+          tension: .3
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+      }
+    });
+  }
+
   function pintarStats(d){
     $("kpi-total").textContent = d.total != null ? d.total : 0;
     $("kpi-unicos").textContent = d.unique != null ? d.unique : 0;
@@ -595,6 +716,52 @@
     pintarLista("por-navegador", d.by_browser);
     pintarLista("por-referrer", d.by_referrer);
     pintarLista("por-dia", d.by_day);
+    pintarChart("chart-pais", "bar", d.by_country, { label: "Clics por país" });
+    pintarChart("chart-dispositivo", "bar", d.by_device, { label: "Clics por dispositivo" });
+    pintarChart("chart-navegador", "bar", d.by_browser, { label: "Clics por navegador" });
+    pintarChart("chart-os", "bar", d.by_os, { label: "Clics por sistema operativo" });
+    pintarChart("chart-isp", "bar", d.by_isp, { label: "Clics por ISP" });
+    pintarChart("chart-dia", "line", d.by_day, { label: "Clics por día" });
+  }
+
+  // -------- Detalle de clics --------
+  $("btn-cargar-clicks").addEventListener("click", async () => {
+    if(!getToken()){ mostrar("msg-clicks", "Primero guarda el token de administrador.", "error"); return; }
+    const code = $("selector-enlace").value;
+    if(!code){ mostrar("msg-clicks", "Selecciona un enlace primero.", "error"); return; }
+    mostrar("msg-clicks", "Cargando detalle de clics...", "ok");
+    try{
+      const resp = await fetch(API_URL + "/api/trento/links/" + encodeURIComponent(code) + "/clicks", { headers: authHeaders() });
+      if(esNoAutorizado(resp)){ mostrar("msg-clicks", "Token inválido o faltante.", "error"); return; }
+      const data = await resp.json();
+      if(resp.status === 404){ mostrar("msg-clicks", "Enlace no encontrado.", "error"); return; }
+      if(!resp.ok || !data.success){ mostrar("msg-clicks", "No se pudo cargar el detalle de clics.", "error"); return; }
+      pintarClicks(data.data || []);
+      mostrar("msg-clicks", "Clics cargados: " + (data.total != null ? data.total : (data.data || []).length) + ".", "ok");
+    } catch(err){
+      mostrar("msg-clicks", "No se pudo conectar con el servidor.", "error");
+    }
+  });
+
+  function pintarClicks(filas){
+    const tbody = $("tabla-clicks").querySelector("tbody");
+    tbody.innerHTML = "";
+    if(!filas.length){ $("clicks-vacio").textContent = "No hay clics todavía para este enlace."; $("clicks-vacio").style.display = "block"; return; }
+    $("clicks-vacio").style.display = "none";
+    for(const c of filas){
+      const tr = document.createElement("tr");
+      const latlon = (c.lat != null && c.lon != null) ? (c.lat + ", " + c.lon) : "-";
+      const celdas = [
+        c.ts, c.ip, c.country, c.region, c.city, latlon,
+        c.isp, c.org, c.asn, c.device, c.os, c.browser, c.referrer, c.user_agent
+      ];
+      for(const v of celdas){
+        const td = document.createElement("td");
+        td.textContent = (v === null || v === undefined || v === "") ? "-" : String(v);
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
   }
 </script>
 </body>

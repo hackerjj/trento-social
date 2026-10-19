@@ -3,6 +3,19 @@
 Historial de cambios del registro vecinal de Trento Residencial.
 Lo más reciente arriba. Formato de fecha: DD mmm AAAA · HH:MM (hora local CDMX).
 
+## v1.9 — 19 oct 2026 · 06:20
+
+### Agregado
+
+- Geolocalización ampliada en las analíticas del acortador: ahora se puede ver región, latitud/longitud, ISP, compañía (org) y ASN de cada clic, además de país y ciudad.
+- Nueva sección "Detalle de clics" en el panel de administración: tabla con los últimos clics de un enlace (hasta 500), con fecha/hora, IP, país, región, ciudad, lat/lon, ISP, compañía, ASN, dispositivo, sistema operativo, navegador, referrer y user-agent.
+- 6 gráficas con Chart.js en "Analíticas del acortador": barras por país, dispositivo, navegador, sistema operativo e ISP, y una línea de clics por día, además de los desgloses de texto que ya existían.
+- El formulario de registro vecinal ahora también envía, junto con el tracking invisible existente, el código del enlace corto de origen (`?t=`), la profundidad máxima de scroll alcanzada, la zona horaria, el tamaño de la ventana y la plataforma del dispositivo.
+
+### Cambiado
+
+- El acortador (`/t/<code>`) vuelve a usar una redirección 302 real con `?t=<code>` agregado al destino, en lugar del iframe de pantalla completa introducido en la v1.8. La barra de direcciones ya no se enmascara, pero el destino sí recibe el código del enlace para el tracking del formulario.
+
 ## v1.8 — 18 oct 2026 · 23:05
 
 ### Cambiado
