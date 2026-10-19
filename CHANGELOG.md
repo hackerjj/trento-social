@@ -3,6 +3,12 @@
 Historial de cambios del registro vecinal de Trento Residencial.
 Lo más reciente arriba. Formato de fecha: DD mmm AAAA · HH:MM (hora local CDMX).
 
+## v1.4 — 18 oct 2026 · 22:25
+
+### Agregado
+- Overlay de carga con barra de progreso mientras se envía el registro al backend. El botón "Registrarme" ya no parece congelado durante los segundos que tarda el servidor en responder.
+- Nota que aparece a los 3 segundos si la espera se alarga, aclarando que el servidor gratuito de Render puede estar "despertando" tras estar inactivo.
+
 ## v1.3 — 17 oct 2026 · 06:30
 
 ### Agregado
