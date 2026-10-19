@@ -132,6 +132,32 @@
     <div class="vacio" id="registros-vacio">Carga los registros con el botón de arriba.</div>
   </section>
 
+  <!-- ================= CREAR ENLACE CORTO ================= -->
+  <section class="tarjeta">
+    <h2>
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+      Crear enlace corto
+    </h2>
+    <div class="fila">
+      <div>
+        <label for="nuevo-destino">URL destino (completa, con http:// o https://)</label>
+        <input type="url" id="nuevo-destino" placeholder="https://hackerjj.github.io/trento-social/">
+      </div>
+      <div>
+        <label for="nuevo-label">Etiqueta (opcional)</label>
+        <input type="text" id="nuevo-label" placeholder="Ej. Formulario para WhatsApp" maxlength="160">
+      </div>
+      <div style="flex:0 0 auto">
+        <button id="btn-crear-enlace">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          Crear enlace
+        </button>
+      </div>
+    </div>
+    <div class="msg" id="msg-crear-enlace" role="status" aria-live="polite"></div>
+    <div class="vacio oculto" id="enlace-creado-resultado"></div>
+  </section>
+
   <!-- ================= ANALITICAS DEL ACORTADOR ================= -->
   <section class="tarjeta">
     <h2>
@@ -312,6 +338,39 @@
       mostrar("msg-registros", "CSV descargado.", "ok");
     } catch(err){
       mostrar("msg-registros", "No se pudo conectar con el servidor.", "error");
+    }
+  });
+
+  // -------- Crear enlace corto --------
+  $("btn-crear-enlace").addEventListener("click", async () => {
+    if(!getToken()){ mostrar("msg-crear-enlace", "Primero guarda el token de administrador.", "error"); return; }
+    const destino = $("nuevo-destino").value.trim();
+    const label = $("nuevo-label").value.trim();
+    if(!destino){ mostrar("msg-crear-enlace", "Escribe la URL destino.", "error"); return; }
+    if(!/^https?:\/\//i.test(destino)){ mostrar("msg-crear-enlace", "La URL debe empezar con http:// o https://", "error"); return; }
+    mostrar("msg-crear-enlace", "Creando enlace...", "ok");
+    $("enlace-creado-resultado").classList.add("oculto");
+    try{
+      const resp = await fetch(API_URL + "/api/trento/links", {
+        method: "POST",
+        headers: { ...authHeaders(), "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({ destination: destino, label: label || null })
+      });
+      if(esNoAutorizado(resp)){ mostrar("msg-crear-enlace", "Token inválido o faltante.", "error"); return; }
+      const data = await resp.json();
+      if(!resp.ok || !data.success){
+        const detalle = data.message || (data.errors ? JSON.stringify(data.errors) : "No se pudo crear el enlace.");
+        mostrar("msg-crear-enlace", detalle, "error");
+        return;
+      }
+      mostrar("msg-crear-enlace", "Enlace creado.", "ok");
+      const resultado = $("enlace-creado-resultado");
+      resultado.classList.remove("oculto");
+      resultado.innerHTML = 'Enlace corto: <a href="' + data.short_url + '" target="_blank" rel="noopener">' + data.short_url + "</a>";
+      $("nuevo-destino").value = "";
+      $("nuevo-label").value = "";
+    } catch(err){
+      mostrar("msg-crear-enlace", "No se pudo conectar con el servidor.", "error");
     }
   });
 

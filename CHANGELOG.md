@@ -3,6 +3,11 @@
 Historial de cambios del registro vecinal de Trento Residencial.
 Lo más reciente arriba. Formato de fecha: DD mmm AAAA · HH:MM (hora local CDMX).
 
+## v1.7 — 18 oct 2026 · 22:35
+
+### Agregado
+- Panel de administración: sección "Crear enlace corto" (formulario con URL destino y etiqueta opcional) que llama a `POST /api/trento/links` para generar enlaces del acortador sin necesidad de Postman ni la terminal. Muestra el enlace corto resultante (`.../t/<code>`) listo para copiar.
+
 ## v1.6 — 18 oct 2026 · 22:10
 
 ### Corregido
