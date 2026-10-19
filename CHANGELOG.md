@@ -3,6 +3,13 @@
 Historial de cambios del registro vecinal de Trento Residencial.
 Lo más reciente arriba. Formato de fecha: DD mmm AAAA · HH:MM (hora local CDMX).
 
+## v1.8 — 18 oct 2026 · 23:05
+
+### Cambiado
+
+- Favicon convertido en círculo real; antes se veía cuadrado con esquinas blancas. Se regeneró desde `logo-trento-social.svg` aplicando un recorte circular (`clipPath`), con las esquinas transparentes, y se reemplazaron `favicon-16.png`, `favicon-32.png`, `apple-touch-icon.png`, `favicon-512.png` y `logo-trento-social-circular.png`.
+- El favicon SVG de la pestaña (las 3 páginas) ahora apunta a `logo-trento-social-circular.svg` en lugar del SVG cuadrado, para que la pestaña también muestre el ícono redondo.
+
 ## v1.7 — 18 oct 2026 · 22:35
 
 ### Agregado

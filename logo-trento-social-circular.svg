@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640">
+  <defs>
+    <style>
+      .sun { fill: #FFD600; }
+      .txt { fill: #3E2A20; font-family: 'Trebuchet MS', 'Century Gothic', sans-serif; }
+      .vein { fill: none; stroke: #ffffff; stroke-width: 3.5; stroke-linecap: round; }
+    </style>
+    <clipPath id="roundClip">
+      <circle cx="320" cy="320" r="320"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#roundClip)">
+    <rect width="640" height="640" fill="#ffffff"/>
+
+    <!-- ================= CIRCULO DE PERSONAS TOMADAS DE LA MANO ================= -->
+    <!-- Manos (arcos que conectan a cada persona con la siguiente) -->
+    <g>
+      <path d="M320.0 76.0 Q381.1 71.9 435.0 106.8" fill="none" stroke="#8BC34A" stroke-width="7" stroke-linecap="round"/>
+      <path d="M435.0 106.8 Q487.0 133.0 519.2 191.0" fill="none" stroke="#4CAF50" stroke-width="7" stroke-linecap="round"/>
+      <path d="M519.2 191.0 Q548.1 238.9 550.0 306.0" fill="none" stroke="#C0CA33" stroke-width="7" stroke-linecap="round"/>
+      <path d="M550.0 306.0 Q548.1 361.1 519.2 421.0" fill="none" stroke="#FFB300" stroke-width="7" stroke-linecap="round"/>
+      <path d="M519.2 421.0 Q487.0 467.0 435.0 505.2" fill="none" stroke="#66BB6A" stroke-width="7" stroke-linecap="round"/>
+      <path d="M435.0 505.2 Q381.1 528.1 320.0 536.0" fill="none" stroke="#9CCC65" stroke-width="7" stroke-linecap="round"/>
+      <path d="M320.0 536.0 Q258.9 528.1 205.0 505.2" fill="none" stroke="#FDD835" stroke-width="7" stroke-linecap="round"/>
+      <path d="M205.0 505.2 Q153.0 467.0 120.8 421.0" fill="none" stroke="#43A047" stroke-width="7" stroke-linecap="round"/>
+      <path d="M120.8 421.0 Q91.9 361.1 90.0 306.0" fill="none" stroke="#AED581" stroke-width="7" stroke-linecap="round"/>
+      <path d="M90.0 306.0 Q91.9 238.9 120.8 191.0" fill="none" stroke="#FFA000" stroke-width="7" stroke-linecap="round"/>
+      <path d="M120.8 191.0 Q153.0 133.0 205.0 106.8" fill="none" stroke="#7CB342" stroke-width="7" stroke-linecap="round"/>
+      <path d="M205.0 106.8 Q258.9 71.9 320.0 76.0" fill="none" stroke="#C5E1A5" stroke-width="7" stroke-linecap="round"/>
+    </g>
+
+    <!-- Personas (cuerpo mirando hacia afuera) -->
+    <g>
+      <g transform="translate(320.0,70.0) rotate(0.0)"><circle cx="0" cy="-14" r="11" fill="#8BC34A"/><path d="M-12 2 q12 -11 24 0 l5 26 q-17 7 -34 0 Z" fill="#8BC34A"/></g>
+      <g transform="translate(435.0,100.8) rotate(30.0)"><circle cx="0" cy="-14" r="11" fill="#4CAF50"/><path d="M-12 2 q12 -11 24 0 l5 26 q-17 7 -34 0 Z" fill="#4CAF50"/></g>
+      <g transform="translate(519.2,185.0) rotate(60.0)"><circle cx="0" cy="-14" r="11" fill="#C0CA33"/><path d="M-12 2 q12 -11 24 0 l5 26 q-17 7 -34 0 Z" fill="#C0CA33"/></g>
+      <g transform="translate(550.0,300.0) rotate(90.0)"><circle cx="0" cy="-14" r="11" fill="#FFB300"/><path d="M-12 2 q12 -11 24 0 l5 26 q-17 7 -34 0 Z" fill="#FFB300"/></g>
+      <g transform="translate(519.2,415.0) rotate(120.0)"><circle cx="0" cy="-14" r="11" fill="#66BB6A"/><path d="M-12 2 q12 -11 24 0 l5 26 q-17 7 -34 0 Z" fill="#66BB6A"/></g>
+      <g transform="translate(435.0,499.2) rotate(150.0)"><circle cx="0" cy="-14" r="11" fill="#9CCC65"/><path d="M-12 2 q12 -11 24 0 l5 26 q-17 7 -34 0 Z" fill="#9CCC65"/></g>
+      <g transform="translate(320.0,530.0) rotate(180.0)"><circle cx="0" cy="-14" r="11" fill="#FDD835"/><path d="M-12 2 q12 -11 24 0 l5 26 q-17 7 -34 0 Z" fill="#FDD835"/></g>
+      <g transform="translate(205.0,499.2) rotate(210.0)"><circle cx="0" cy="-14" r="11" fill="#43A047"/><path d="M-12 2 q12 -11 24 0 l5 26 q-17 7 -34 0 Z" fill="#43A047"/></g>
+      <g transform="translate(120.8,415.0) rotate(240.0)"><circle cx="0" cy="-14" r="11" fill="#AED581"/><path d="M-12 2 q12 -11 24 0 l5 26 q-17 7 -34 0 Z" fill="#AED581"/></g>
+      <g transform="translate(90.0,300.0) rotate(270.0)"><circle cx="0" cy="-14" r="11" fill="#FFA000"/><path d="M-12 2 q12 -11 24 0 l5 26 q-17 7 -34 0 Z" fill="#FFA000"/></g>
+      <g transform="translate(120.8,185.0) rotate(300.0)"><circle cx="0" cy="-14" r="11" fill="#7CB342"/><path d="M-12 2 q12 -11 24 0 l5 26 q-17 7 -34 0 Z" fill="#7CB342"/></g>
+      <g transform="translate(205.0,100.8) rotate(330.0)"><circle cx="0" cy="-14" r="11" fill="#C5E1A5"/><path d="M-12 2 q12 -11 24 0 l5 26 q-17 7 -34 0 Z" fill="#C5E1A5"/></g>
+    </g>
+
+    <!-- ================= LOGO TRENTO EN EL CENTRO ================= -->
+    <g transform="translate(0,-18)">
+      <!-- SOL -->
+      <circle cx="258" cy="210" r="24" class="sun"/>
+      <g stroke="#FFD600" stroke-width="5" stroke-linecap="round">
+        <line x1="258" y1="172" x2="258" y2="180"/>
+        <line x1="258" y1="240" x2="258" y2="248"/>
+        <line x1="220" y1="210" x2="228" y2="210"/>
+        <line x1="288" y1="210" x2="296" y2="210"/>
+        <line x1="231" y1="183" x2="237" y2="189"/>
+        <line x1="279" y1="231" x2="285" y2="237"/>
+        <line x1="231" y1="237" x2="237" y2="231"/>
+        <line x1="279" y1="189" x2="285" y2="183"/>
+      </g>
+
+      <!-- ARBOLES -->
+      <path d="M248 338 C248 300 263 275 270 268 C277 275 292 300 292 338 Z" fill="#8BC34A"/>
+      <path class="vein" d="M270 338 L270 288 M270 306 L260 296 M270 318 L280 308"/>
+
+      <path d="M286 342 C286 298 303 270 313 261 C323 270 340 298 340 342 Z" fill="#4CAF50"/>
+      <path class="vein" d="M313 342 L313 280 M313 302 L302 291 M313 316 L324 305"/>
+
+      <path d="M332 345 C332 288 353 243 365 232 C377 243 398 288 398 345 Z" fill="#8BC34A"/>
+      <path class="vein" d="M365 345 L365 258 M365 285 L353 272 M365 302 L378 289 M365 320 L354 309"/>
+
+      <path d="M392 342 C392 302 408 272 417 263 C426 272 442 302 442 342 Z" fill="#C0CA33"/>
+      <path class="vein" d="M417 342 L417 282 M417 305 L407 294 M417 318 L427 307"/>
+
+      <path d="M430 338 C430 302 444 278 451 271 C458 278 472 302 472 338 Z" fill="#4CAF50"/>
+      <path class="vein" d="M451 338 L451 290 M451 308 L442 298 M451 319 L460 309"/>
+    </g>
+
+    <!-- TEXTO -->
+    <text x="320" y="372" text-anchor="middle" class="txt" font-size="62" font-weight="700" letter-spacing="3">TRENTO</text>
+    <text x="320" y="402" text-anchor="middle" class="txt" font-size="21" font-weight="400" letter-spacing="9">SOCIAL</text>
+  </g>
+</svg>
