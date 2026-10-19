@@ -3,6 +3,13 @@
 Historial de cambios del registro vecinal de Trento Residencial.
 Lo más reciente arriba. Formato de fecha: DD mmm AAAA · HH:MM (hora local CDMX).
 
+## v1.5 — 19 oct 2026 · 09:10
+
+### Agregado
+- Validación de número duplicado en el backend: si el WhatsApp ya está registrado, responde 409 y el frontend muestra "Este número ya se encuentra registrado" en vez de crear un segundo registro.
+- Panel de administración activado en producción con token `TRENTO_ADMIN_TOKEN`.
+- Favicon con el logo circular de Trento Social en las 3 páginas.
+
 ## v1.4 — 18 oct 2026 · 22:25
 
 ### Agregado

@@ -492,7 +492,7 @@
   </div>
 </div>
 
-<button class="ver-chip" id="ver-chip" title="Ver historial de cambios">v1.4</button>
+<button class="ver-chip" id="ver-chip" title="Ver historial de cambios">v1.5</button>
 <div class="modal-overlay" id="changelog" role="dialog" aria-modal="true" aria-labelledby="cl-titulo">
   <div class="modal">
     <div class="modal-head">
@@ -501,6 +501,14 @@
       <button class="cerrar" id="cl-cerrar" aria-label="Cerrar" title="Cerrar">&times;</button>
     </div>
     <div class="modal-body" id="changelog-body">
+      <div class="cl-ver">
+        <h4>v1.5 — 19 oct 2026 · 09:10</h4>
+        <ul>
+          <li><span class="cl-add">NUEVO</span> Validación de número duplicado: si el WhatsApp ya está registrado, se muestra "Este número ya se encuentra registrado" y no se crea un segundo registro.</li>
+          <li><span class="cl-add">NUEVO</span> Panel de administración: endpoint y token (TRENTO_ADMIN_TOKEN) activados en producción.</li>
+          <li><span class="cl-add">NUEVO</span> Favicon con el logo circular de Trento Social.</li>
+        </ul>
+      </div>
       <div class="cl-ver">
         <h4>v1.4 — 18 oct 2026 · 22:25</h4>
         <ul>
@@ -721,6 +729,9 @@
       if(resp.ok && data.success){
         ocultarCarga(true);
         setTimeout(mostrarExito, 280); // deja ver la barra llegar al 100% antes de cambiar de pantalla
+      } else if(resp.status === 409){
+        ocultarCarga(false);
+        mostrarMensaje("Este número ya se encuentra registrado.", "error");
       } else if(resp.status === 422){
         ocultarCarga(false);
         let detalle = (data && data.message) ? data.message : "Revisa los datos e inténtalo de nuevo.";
