@@ -3,6 +3,13 @@
 Historial de cambios del registro vecinal de Trento Residencial.
 Lo más reciente arriba. Formato de fecha: DD mmm AAAA · HH:MM (hora local CDMX).
 
+## v1.11 — 27 oct 2026 · 15:35
+
+### Corregido
+
+- El backend guardaba la IP interna de Render (`10.x`) en vez de la del visitante, por eso país, ciudad e ISP salían "desconocido" en todos los clics. Nuevo middleware global `ResolveClientIp` que toma la IP real de `CF-Connecting-IP` (Cloudflare lo pone y el visitante no lo puede falsificar), y `trustProxies` pasa de `'*'` a una lista explícita de rangos confiables. Aplica a clics del acortador, registros del formulario y límite de peticiones. Un `X-Forwarded-For` inventado ya no cambia la IP guardada. Commit backend `4100b39`.
+- Los clics anteriores al fix se quedan sin ubicación (histórico).
+
 ## v1.10 — 27 oct 2026 · 15:20
 
 ### Agregado
