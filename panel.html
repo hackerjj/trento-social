@@ -188,7 +188,7 @@
     <div class="fila">
       <div>
         <label for="nuevo-destino">URL destino (completa, con http:// o https://)</label>
-        <input type="url" id="nuevo-destino" placeholder="https://hackerjj.github.io/trento-social/">
+        <input type="url" id="nuevo-destino" placeholder="https://trento.foo.ng/">
       </div>
       <div>
         <label for="nuevo-label">Etiqueta (opcional)</label>
@@ -354,7 +354,7 @@
   <footer>Trento Social — Panel interno de administración.</footer>
 </main>
 
-<button class="ver-chip" id="ver-chip" title="Ver historial de cambios">v1.9</button>
+<button class="ver-chip" id="ver-chip" title="Ver historial de cambios">v1.10</button>
 <div class="modal-overlay" id="changelog" role="dialog" aria-modal="true" aria-labelledby="cl-titulo">
   <div class="modal">
     <div class="modal-head">
@@ -363,6 +363,16 @@
       <button class="cerrar" id="cl-cerrar" aria-label="Cerrar" title="Cerrar">&times;</button>
     </div>
     <div class="modal-body" id="changelog-body">
+      <div class="cl-ver">
+        <h4>v1.10 — 27 oct 2026 · 15:20</h4>
+        <ul>
+          <li><span class="cl-add">NUEVO</span> Dominio propio <code>trento.foo.ng</code> (archivo CNAME en GitHub Pages). La dirección anterior <code>hackerjj.github.io/trento-social/</code> redirige sola al dominio nuevo y conserva el código <code>?t=</code>.</li>
+          <li><span class="cl-fix">FIX</span> El panel en <code>trento.foo.ng</code> marcaba "No se pudo conectar con el servidor": el backend solo autorizaba (CORS) a <code>hackerjj.github.io</code>. Se agregó <code>https://trento.foo.ng</code> a <code>CORS_ALLOWED_ORIGINS</code> en Render.</li>
+          <li><span class="cl-chg">CAMBIO</span> Los enlaces cortos existentes (<code>WbSttc4</code> y <code>mMVlDox</code>) ahora apuntan a <code>https://trento.foo.ng/</code>. Los códigos no cambian.</li>
+          <li><span class="cl-chg">CAMBIO</span> El ejemplo de "URL destino" en Crear enlace corto ahora muestra el dominio nuevo.</li>
+          <li><span class="cl-chg">CAMBIO</span> Backend v1.9 desplegado en Render (redirect con <code>?t=</code>, geolocalización ampliada, detalle de clics, gráficas por SO e ISP).</li>
+        </ul>
+      </div>
       <div class="cl-ver">
         <h4>v1.9 — 19 oct 2026 · 06:20</h4>
         <ul>

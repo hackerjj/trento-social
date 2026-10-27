@@ -3,6 +3,22 @@
 Historial de cambios del registro vecinal de Trento Residencial.
 Lo más reciente arriba. Formato de fecha: DD mmm AAAA · HH:MM (hora local CDMX).
 
+## v1.10 — 27 oct 2026 · 15:20
+
+### Agregado
+
+- Dominio propio `trento.foo.ng` (PR #347 aprobado en `Pokymon/foo.ng`, archivo `CNAME` en GitHub Pages). `hackerjj.github.io/trento-social/` redirige con 301 al dominio nuevo y conserva el `?t=`.
+
+### Corregido
+
+- El panel en `trento.foo.ng` no podía conectar con el backend ("No se pudo conectar con el servidor") porque CORS solo autorizaba `https://hackerjj.github.io`. Se agregó `https://trento.foo.ng` a `CORS_ALLOWED_ORIGINS` en Render.
+
+### Cambiado
+
+- Enlaces cortos `WbSttc4` y `mMVlDox` actualizados en Mongo para apuntar a `https://trento.foo.ng/` (mismos códigos).
+- Placeholder de "URL destino" en el panel actualizado al dominio nuevo.
+- Backend v1.9 desplegado en Render (commit `170118c`).
+
 ## v1.9 — 19 oct 2026 · 06:20
 
 ### Agregado
